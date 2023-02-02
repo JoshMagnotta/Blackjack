@@ -11,11 +11,13 @@ public class Blackjack {
         int playerWins = 0;
         int ties = 0;
 
-        // Bonus - While Loop
+        // keeps playing until user inputs to stop
         while (playAgain) {
 
             int houseTotal = deck.drawCard().getValue(true) + deck.drawCard().getValue(true);
             int playerTotal = deck.drawCard().getValue(true) + deck.drawCard().getValue(true);
+            
+            // Player's turn
 
             System.out.println("The house is showing: " + houseTotal);
 
@@ -26,17 +28,16 @@ public class Blackjack {
 
                 int choice = scnr.nextInt();
 
-                if (choice == 0) {
+                if (choice == 0)
                     break;
-                } else if (choice == 1) {
+                else if (choice == 1) {
                     Card nextCard = deck.drawCard();
                     nextCard = deck.drawCard();
                     System.out.println("Player draws the " + nextCard.declareCard());
                     playerTotal += nextCard.getValue(true);
-                } else {
+                } else 
                     System.out.println("Ivalid option, try again");
-                }
-
+                
             }
 
             if (playerTotal > 21) {
@@ -47,8 +48,8 @@ public class Blackjack {
                 System.out.println("The house will play next.");
             }
 
-            // Up to Q17 done
-
+            // House's turn
+            
             while (houseTotal < 17) {
                 Thread.sleep(500);
                 System.out.println("The house is showing: " + houseTotal);
@@ -66,6 +67,8 @@ public class Blackjack {
                 System.out.println("The house has bust with " + houseTotal);
                 houseBust = true;
             }
+            
+            // Game result
 
             if (((houseTotal > playerTotal) && houseTotal <= 21) || (playerBust && !houseBust)) {
                 Thread.sleep(500);
@@ -97,6 +100,8 @@ public class Blackjack {
             houseBust = false;
             playerBust = false;
         }
+        
+        // Player chose to quit
 
         System.out.println("\nThank you for playing!");
         System.out.println("The player won " + playerWins + " times");
